@@ -8,6 +8,7 @@ async function bootstrap() {
     .setTitle('Realtime Team API')
     .setDescription('Realtime team collaboration backend')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   app.useGlobalPipes(
     new ValidationPipe({

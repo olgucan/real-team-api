@@ -38,4 +38,7 @@ export class AuthService {
       access_token: accessToken,
     };
   }
+  async getProfile(userId: number) {
+    return this.usersService.findOne(userId);
+  }
 }
