@@ -3,8 +3,10 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  ManyToOne,
 } from 'typeorm';
-
+import { User } from 'src/users/entities/user.entity';
+import { Team } from 'src/teams/entities/team.entity';
 @Entity()
 export class TeamMember {
   @PrimaryGeneratedColumn()
@@ -16,8 +18,11 @@ export class TeamMember {
   @CreateDateColumn()
   joinedAt: Date;
 
-  @Column()
-  user: string;
-  @Column()
-  team: string;
+  // @Column()
+  // user: string;
+  // @Column()
+  // team: string;
+
+  @ManyToOne(() => User, (user) => user.TeamMember) user: User;
+  @ManyToOne(() => Team, (team) => team.TeamMember) team: Team;
 }
