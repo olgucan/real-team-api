@@ -23,6 +23,9 @@ export class TeamMember {
   // @Column()
   // team: string;
 
-  @ManyToOne(() => User, (user) => user.TeamMember) user: User;
-  @ManyToOne(() => Team, (team) => team.TeamMember) team: Team;
+  @ManyToOne(() => User, (user) => user.teamMemberships)
+  user: User;
+
+  @ManyToOne(() => Team, (team) => team.members)
+  team: Team;
 }

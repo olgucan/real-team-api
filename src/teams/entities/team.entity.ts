@@ -19,5 +19,5 @@ export class Team {
   createdAt: Date;
 
   @OneToMany(() => TeamMember, (member) => member.team)
-  TeamMember: TeamMember[];
+  members: TeamMember[];
 }
