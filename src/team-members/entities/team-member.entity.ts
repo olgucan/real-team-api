@@ -4,10 +4,12 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   ManyToOne,
+  Unique,
 } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Team } from 'src/teams/entities/team.entity';
 @Entity()
+@Unique(['user', 'team'])
 export class TeamMember {
   @PrimaryGeneratedColumn()
   id: number;
