@@ -11,6 +11,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AddTeamMemberDto } from './dto/add-team-member.dto';
 import { User } from 'src/users/entities/user.entity';
 import { TeamMember } from 'src/team-members/entities/team-member.entity';
+import { UpdateTeamMemberDto } from './dto/update-team-member.dto';
 @Injectable()
 export class TeamsService {
   constructor(
@@ -105,5 +106,29 @@ export class TeamsService {
       throw new NotFoundException('There is no such team in this  id');
     }
     return await this.teamMemberRepository.delete(member.id);
+  }
+  async updateMember(
+    teamId: number,
+    memberId: number,
+    updateTeamMemberDto: UpdateTeamMemberDto,
+  ) {
+    const member = await this.teamMemberRepository.findOne({
+      where: {
+        id: memberId,
+      },
+      relations: {
+        team: true,
+      },
+    });
+    if (!member) {
+      throw new NotFoundException('this id doesnt belong to any member');
+    }
+    if (teamId !== member.team.id) {
+      throw new NotFoundException('There is no such team in this  id');
+    }
+    return await this.teamMemberRepository.update(
+      member.id,
+      updateTeamMemberDto,
+    );
   }
 }

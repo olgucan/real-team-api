@@ -12,6 +12,7 @@ import { TeamsService } from './teams.service';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
 import { AddTeamMemberDto } from './dto/add-team-member.dto';
+import { UpdateTeamMemberDto } from './dto/update-team-member.dto';
 
 @Controller('teams')
 export class TeamsController {
@@ -56,5 +57,14 @@ export class TeamsController {
     @Param('memberId', ParseIntPipe) memberId: number,
   ) {
     return this.teamsService.removeMember(teamId, memberId);
+  }
+
+  @Patch(':teamId/members/:memberId')
+  updateMember(
+    @Param('teamId', ParseIntPipe) teamId: number,
+    @Param('memberId', ParseIntPipe) memberId: number,
+    @Body() dto: UpdateTeamMemberDto,
+  ) {
+    return this.teamsService.updateMember(teamId, memberId, dto);
   }
 }
