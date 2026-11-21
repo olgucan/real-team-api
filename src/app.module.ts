@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { TeamsModule } from './teams/teams.module';
 import { TeamMembersModule } from './team-members/team-members.module';
 import { ProjectsModule } from './projects/projects.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -39,6 +40,8 @@ import { ProjectsModule } from './projects/projects.module';
     TeamMembersModule,
 
     ProjectsModule,
+
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
